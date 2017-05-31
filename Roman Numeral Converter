@@ -1,0 +1,137 @@
+function convertToRoman(num) {
+ 
+ 
+ 
+   
+  
+  //use a while loop until the number is 0
+  // Chain if else statements to deduce "num" to 0
+  //learn how roman numerals really work
+  //Have fun and code! 
+  
+  var romanReturnValue=""; //create blank String to be added to
+  var thousandsFrequency; //number of thousands etc...
+  var halfThousandsFrequency;
+  var hundredsFrequency;
+  var fiftiesFrequency;
+  var tensFrequency;
+  var fivesFrequency;
+  var onesFrequency;
+  while(num>0) //loop till num becomes zero
+    {
+      if(num>=1000)
+        {
+          thousandsFrequency=Math.floor(num/1000); //divide and subtract the thousands place
+          num-=thousandsFrequency*1000;
+          for(var i=0;i<thousandsFrequency;i++) //loops the amount of times as thousandsFrequency
+            {
+              romanReturnValue+="M"; //add M(thousand) each time 
+            }
+        }
+      else if(num>=500&&num<1000)
+        {
+          if(num>=900) 
+            {
+              num-=900;
+              romanReturnValue+="CM"; //if num=900, then we simply output "CM"
+            }
+          else
+            {
+          halfThousandsFrequency=Math.floor(num/500); 
+          num-=halfThousandsFrequency*500; //always one anyways
+          for(var j=0;j<halfThousandsFrequency;j++)
+            {
+              romanReturnValue+="D";
+            }
+            }//closing bracket for inner if statement
+        }
+      else if(num>=100&&num<500)
+        {
+          hundredsFrequency=Math.floor(num/100); //find out value of hundreths place etc 851 is 8
+          num-=hundredsFrequency*100;
+          //put code to push roman numeral
+          if(hundredsFrequency===4)
+            {
+              romanReturnValue+="CD";
+            }
+          
+          else
+            {
+              for(var l=0;l<hundredsFrequency;l++) //for loop as seen above
+                {
+                  romanReturnValue+="C";
+                }
+            }
+        }
+      else if(num>=50&&num<100)
+        {
+          if(num>=90)
+            {
+              num-=90;
+              romanReturnValue+="XC";
+            }
+          else
+            {
+          fiftiesFrequency=Math.floor(num/50);
+          num-=fiftiesFrequency*50;
+          romanReturnValue+="L";
+            }
+          //put code to push roman numeral
+        }
+      else if(num>=10&&num<50)
+        {
+          tensFrequency=Math.floor(num/10);
+          if(tensFrequency===4)
+            {
+              romanReturnValue+="XL";
+            }
+          else
+            {
+              for(var m=0;m<tensFrequency;m++)
+                {
+                  romanReturnValue+="X";
+                }
+
+            }
+          num-=tensFrequency*10;
+            
+        }
+      else if(num>=5&&num<10)
+        {
+          fivesFrequency=Math.floor(num/5);
+          if(num===9)
+            {
+              romanReturnValue+="IX";
+              num-=9;
+            }
+          else
+            {
+          num-=fivesFrequency*5;
+          romanReturnValue+="V";
+            }
+        }
+        else if(num>=0&&num<5)
+          {
+            if(num===4)
+              {
+                romanReturnValue+="IV";
+                num-=4;
+              }
+            else
+              {
+                for(var n=0;n<num;n++)
+                  {
+                    romanReturnValue+="I";
+                  }
+                num=0;
+            //set num=0
+              }
+            
+          }
+    }
+  return romanReturnValue;
+  
+ 
+}
+
+convertToRoman(3999);
