@@ -1,0 +1,51 @@
+/*The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.
+
+Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+
+Return the provided character as the first element in each array.
+
+For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]
+
+The character and its pair are paired up in an array, and all the arrays are grouped into one encapsulating array.
+
+Remember to use Read-Search-Ask if you get stuck. Try to pair program. Write your own code.
+*/
+
+
+//use a for loop to iterate through the strArray
+//Use a if else statement checking if its a C G A or T
+//push the element as it should 
+function pairElement(str) {
+  var multiArray=[[],[],[],[],[]];
+  var strArray=str.split('');
+  for(var i=0;i<5;i++)
+   {
+     if(strArray[i]==="A")
+       {
+         multiArray[i].push("A");
+         multiArray[i].push("T");
+       }
+     else if(strArray[i]==="T")
+       {
+         multiArray[i].push("T");
+         multiArray[i].push("A");
+       }
+     else if(strArray[i]==="C")
+       {
+         multiArray[i].push("C");
+         multiArray[i].push("G");
+       }
+     else if(strArray[i]==="G")
+       {
+         multiArray[i].push("G");
+         multiArray[i].push("C");
+       }
+   }
+  //multiArray[0].push(15);
+ // multiArray[0].push(5);
+  
+  return multiArray;
+ 
+}
+
+pairElement("GCG");
