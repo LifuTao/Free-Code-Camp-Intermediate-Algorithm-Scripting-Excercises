@@ -1,0 +1,37 @@
+/*Sorted Union
+
+Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
+
+In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array.
+
+The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
+
+Check the assertion tests for examples.
+
+Remember to use Read-Search-Ask if you get stuck. Try to pair program. Write your own code. */
+
+function uniteUnique(arr) {
+  var newArray=[]; //create empty array newArray
+  var finalArray=[]; //create empty array finalArray
+ 
+  for(var i=0;i<arguments.length;i++) //nest two for loops to push 3 arguments into one array
+    {
+      for(var j=0;j<arguments[i].length;j++)
+        {
+          newArray.push(arguments[i][j]);
+        }
+    }
+  for(var k=0;k<newArray.length;k++) //use a for loop to iterate through the length of the array
+    {
+      
+          if(finalArray.indexOf(newArray[k])===-1) //if in the finalArray it does NOT have the newArray[k] value push the newArray[k] value into the finalArray
+            {              
+          finalArray.push(newArray[k]);
+            }
+        }
+    
+  return finalArray; //return the finalArray
+  
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
