@@ -1,0 +1,68 @@
+/*Smallest Common Multiple
+Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+e.g. for 1 and 3 - find the smallest common multiple of both 1 and 3 that is evenly divisible by all numbers between 1 and 3.
+
+Remember to use Read-Search-Ask if you get stuck. Try to pair program. Write your own code. */
+
+function smallestCommons(arr) {
+  var allDivArray=[]; //creation of all numbers needed to be divisible array
+  var leastCommonMultiple=arr[0]*arr[1];//an intial LCM 
+  var inOrderArray=[]; //create an array in which numbers are increasing
+  if(arr[0]<arr[1])
+    {
+      inOrderArray.push(arr[0]);
+      inOrderArray.push(arr[1]);
+    }
+  else
+    {
+      inOrderArray.push(arr[1]);
+      inOrderArray.push(arr[0]);
+    }
+  
+  var doesItWork=true; //set doesItWork to be true initially
+  var mostObviousMultiple=arr[0];//a boolean variable used for a while loop
+  for(var i=inOrderArray[0];i<=inOrderArray[1];i++) //for loop to create an array of numbers that must be divisible by
+    {
+      allDivArray.push(i);
+    }
+   for(i=1;i<allDivArray.length;i++) //for loop to find the mostObviousMultiple by multiplying each number in the allDiv array
+     {
+       mostObviousMultiple=allDivArray[i]*mostObviousMultiple;
+     }
+  
+  for(var j=0;j<allDivArray.length;j++) //if one of the values is not divisible then it's NO GOOD
+    {
+      
+      if(leastCommonMultiple%allDivArray[j]!==0) //if the LCM is not divisible by that number in the array doesItWork is false, we run through it with the for loop and would stay true if all divisble.
+        { 
+          doesItWork=false;
+        }
+    }
+  if(doesItWork===false) //if the initial LCM is false...
+    {
+      i=1; //set counter variable i equal to 1
+      while(i<=mostObviousMultiple) //while i is less than or equal to most obvious multiple
+        {
+          for(j=0;j<allDivArray.length;j++) //once again iterate through the entire array
+            {
+              if(leastCommonMultiple%allDivArray[j]!==0) //if the LCM is not divisble by just one number we multiply the inOrderArray by a multiple of itself
+                {
+                  leastCommonMultiple=(inOrderArray[0]*i)*inOrderArray[1];
+                }
+            }
+          i++; //increment i++ to avoid infinite loop and for generating the next leastCommonMultiple
+        }
+    }
+   // a loop that keeps on iterating so different multiples are churned out
+    
+  
+  
+  return leastCommonMultiple;
+  
+}
+
+
+smallestCommons([5,1]);
